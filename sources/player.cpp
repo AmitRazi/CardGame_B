@@ -2,9 +2,9 @@
 
 using namespace ariel;
 
-Player::Player() : Player("No Name") {}
-
-Player::Player(std::string name) : name(std::move(name)), won_cards(0) {}
+Player::Player(std::string name) : name(std::move(name)), won_cards(0) {
+    if(this->name.length() == 0) this->name = "No Name";
+}
 
 Player::Player(const Player &other) : Player(other.name) {
 }
@@ -16,7 +16,7 @@ Player::Player(Player &&other) noexcept: name(std::move(other.name)), stack(std:
 
 Player::~Player() = default;
 
-std::string Player::get_name() {
+std::string Player::getName() {
     return name;
 }
 
@@ -36,7 +36,7 @@ void Player::add_card(const Card &card) {
     stack.push_back(card);
 }
 
-Card Player::remove_card() {
+Card Player::removeCard() {
     Card top = top_card();
     stack.pop_back();
     return top;
