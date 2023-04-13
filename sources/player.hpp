@@ -36,7 +36,7 @@ namespace ariel {
 
         Card removeCard();
 
-        Card top_card() const;
+        Card topCard() const;
 
         Player &operator=(const Player &);
 
