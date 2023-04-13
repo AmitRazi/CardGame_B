@@ -42,6 +42,8 @@ namespace ariel {
 
         Card &operator=(const Card &);
 
+        operator std::string() const;
+
         friend std::ostream &operator<<(std::ostream &ostream, const Card &card);
 
     private:
