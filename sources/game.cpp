@@ -10,9 +10,9 @@ using namespace ariel;
 
 Game::Game(Player &player1, Player &player2) : player1(player1), player2(player2), p1Wins(0), p2Wins(0), draws(0),
                                                rounds(0) {
-    Game::create_deck();
-    Game::shuffle_deck();
-    Game::distribute_card();
+    Game::createDeck();
+    Game::shuffleDeck();
+    Game::distributeCard();
 }
 
 Game::Game(const Game &other) : Game(other.player1, other.player2) {
@@ -26,7 +26,7 @@ Game::Game(Game &&other) noexcept
           draws(other.draws),
           rounds(other.rounds),
           deck(std::move(other.deck)),
-          play_log(std::move(other.play_log)),
+          playLog(std::move(other.playLog)),
           winner(std::move(other.winner)) {
 
     other.p1Wins = 0;
@@ -37,7 +37,7 @@ Game::Game(Game &&other) noexcept
 
 Game::~Game() = default;
 
-void Game::create_deck() {
+void Game::createDeck() {
     for (int suit = Card::HEARTS; suit <= Card::SPADES; ++suit) {
         for (int rank = Card::ACE; rank <= Card::KING; ++rank) {
             deck.emplace_back(Card{static_cast<Card::Suit>(suit), static_cast<Card::Rank>(rank)});
@@ -45,11 +45,11 @@ void Game::create_deck() {
     }
 }
 
-void Game::shuffle_deck() {
+void Game::shuffleDeck() {
     std::shuffle(deck.begin(), deck.end(), std::mt19937(std::random_device{}()));
 }
 
-void Game::distribute_card() {
+void Game::distributeCard() {
     for (size_t i = 0; i < 52; i++) {
         if (i % 2 == 0) {
             player1.add_card(deck.at(i));
@@ -60,7 +60,7 @@ void Game::distribute_card() {
 }
 
 bool Game::gameStarted() {
-    return play_log.empty() == false;
+    return playLog.empty() == false;
 }
 
 bool Game::playTurn() {
@@ -130,7 +130,7 @@ bool Game::playTurn() {
         }
 
     }
-    play_log.push_back(roundLog.str());
+    playLog.push_back(roundLog.str());
     rounds++;
     return true;
 }
@@ -145,7 +145,7 @@ void Game::printLastTurn() {
         return;
     }
 
-    std::string roundLog = play_log.back();
+    std::string roundLog = playLog.back();
     std::cout << roundLog << std::endl;
 }
 
@@ -156,7 +156,7 @@ void Game::printLog() {
         return;
     }
 
-    for (std::string &round: play_log) {
+    for (std::string &round: playLog) {
         std::cout << round << std::endl;
     }
 }
@@ -217,7 +217,7 @@ Game &Game::operator=(const Game &other) {
     p1Wins = other.p1Wins;
     winner = other.winner;
     deck = other.deck;
-    play_log = other.play_log;
+    playLog = other.playLog;
 
     return *this;
 }
@@ -235,7 +235,7 @@ Game &Game::operator=(Game &&other) noexcept {
     p1Wins = other.p1Wins;
     winner = std::move(other.winner);
     deck = std::move(other.deck);
-    play_log = std::move(other.play_log);
+    playLog = std::move(other.playLog);
 
     rounds = other.rounds;
     draws = other.draws;
@@ -243,7 +243,7 @@ Game &Game::operator=(Game &&other) noexcept {
     p1Wins = other.p1Wins;
     winner = std::move(other.winner);
     deck = std::move(other.deck);
-    play_log = std::move(other.play_log);
+    playLog = std::move(other.playLog);
 
 
     other.rounds = 0;

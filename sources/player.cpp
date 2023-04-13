@@ -2,7 +2,7 @@
 
 using namespace ariel;
 
-Player::Player(std::string name) : name(std::move(name)), won_cards(0) {
+Player::Player(std::string name) : name(std::move(name)), wonCards(0) {
     if(this->name.length() == 0) this->name = "No Name";
 }
 
@@ -10,8 +10,8 @@ Player::Player(const Player &other) : Player(other.name) {
 }
 
 Player::Player(Player &&other) noexcept: name(std::move(other.name)), stack(std::move(other.stack)),
-                                         won_cards(other.won_cards) {
-    other.won_cards = -1;
+                                         wonCards(other.wonCards) {
+    other.wonCards = -1;
 }
 
 Player::~Player() = default;
@@ -25,11 +25,11 @@ int Player::stacksize() const {
 }
 
 int Player::cardesTaken() const {
-    return won_cards;
+    return wonCards;
 }
 
 void Player::won(int num_of_cards) {
-    won_cards += num_of_cards;
+    wonCards += num_of_cards;
 }
 
 void Player::add_card(const Card &card) {
@@ -53,7 +53,7 @@ Player &Player::operator=(const Player &other) {
 
     name = other.name;
     stack = other.stack;
-    won_cards = other.won_cards;
+    wonCards = other.wonCards;
 
     return *this;
 }
@@ -65,8 +65,8 @@ Player &Player::operator=(Player &&other) noexcept {
 
     name = std::move(other.name);
     stack = std::move(other.stack);
-    won_cards = other.won_cards;
-    other.won_cards = -1;
+    wonCards = other.wonCards;
+    other.wonCards = -1;
 
     return *this;
 }

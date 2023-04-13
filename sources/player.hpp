@@ -12,11 +12,11 @@ namespace ariel {
     private:
         std::string name;
         std::vector<Card> stack;
-        int won_cards;
+        int wonCards;
 
     public:
 
-        Player(const std::string name = "No Name");
+        Player(std::string name = "No Name");
 
         Player(Player &&) noexcept;
 

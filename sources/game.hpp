@@ -19,16 +19,16 @@ namespace ariel {
         int rounds;
 
         std::vector<Card> deck;
-        std::vector<std::string> play_log;
+        std::vector<std::string> playLog;
         std::string winner;
 
         bool gameStarted();
 
-        void create_deck();
+        void createDeck();
 
-        void shuffle_deck();
+        void shuffleDeck();
 
-        void distribute_card();
+        void distributeCard();
 
     public:
         Game(Player &player1, Player &player2);

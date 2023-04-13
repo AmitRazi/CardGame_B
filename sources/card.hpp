@@ -28,9 +28,9 @@ namespace ariel {
 
         ~Card();
 
-        Rank get_rank() const;
+        Rank getRank() const;
 
-        Suit get_suit() const;
+        Suit getSuit() const;
 
         bool operator>(const Card &) const;
 
