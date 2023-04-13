@@ -16,9 +16,7 @@ namespace ariel {
 
     public:
 
-        Player();
-
-        Player(std::string name);
+        Player(const std::string name = "No Name");
 
         Player(Player &&) noexcept;
 
@@ -26,7 +24,7 @@ namespace ariel {
 
         ~Player();
 
-        std::string get_name();
+        std::string getName();
 
         int stacksize() const;
 
@@ -36,7 +34,7 @@ namespace ariel {
 
         void add_card(const Card &);
 
-        Card remove_card();
+        Card removeCard();
 
         Card top_card() const;
 
