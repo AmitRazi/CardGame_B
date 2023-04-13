@@ -1,3 +1,4 @@
+#include <sstream>
 #include "card.hpp"
 
 using namespace ariel;
@@ -63,6 +64,11 @@ Card &Card::operator=(Card &&other) noexcept {
     return *this;
 }
 
+Card::operator std::string() const {
+    std::stringstream stringStream;
+    stringStream<<*this;
+    return stringStream.str();
+}
 
 namespace ariel {
     std::ostream &operator<<(std::ostream &ostream, const Card &card) {
