@@ -12,13 +12,17 @@ namespace ariel {
     private:
         Player &player1;
         Player &player2;
-        int p1_wins;
-        int p2_wins;
+
+        int p1Wins;
+        int p2Wins;
         int draws;
         int rounds;
+
         std::vector<Card> deck;
         std::vector<std::string> play_log;
         std::string winner;
+
+        bool gameStarted();
 
         void create_deck();
 
@@ -46,6 +50,8 @@ namespace ariel {
         void printLog();
 
         void printStats();
+
+        std::string createRoundLog(const Card &, const Card &);
 
         Game &operator=(const Game &);
 
